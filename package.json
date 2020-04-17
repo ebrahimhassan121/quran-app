@@ -1,0 +1,57 @@
+{
+  "name": "test",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint .",
+    "apk": "cd android && ./gradlew assembleRelease && cd .. && react-native run-android --variant=release"
+  },
+  "dependencies": {
+    "@eva-design/eva": "^2.0.0-alpha.1",
+    "@react-native-community/masked-view": "^0.1.8",
+    "@react-navigation/bottom-tabs": "^5.2.6",
+    "@react-navigation/drawer": "^5.4.1",
+    "@react-navigation/material-top-tabs": "^5.1.8",
+    "@react-navigation/native": "^5.1.5",
+    "@react-navigation/stack": "^5.2.10",
+    "@ui-kitten/components": "^5.0.0-alpha.1",
+    "@ui-kitten/eva-icons": "^4.4.1",
+    "axios": "^0.19.2",
+    "react": "16.11.0",
+    "react-native": "0.62.2",
+    "react-native-actionsheet": "^2.4.2",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-largelist-v3": "^3.0.15",
+    "react-native-reanimated": "^1.8.0",
+    "react-native-responsive-dimensions": "^3.1.1",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.4.0",
+    "react-native-splash-screen": "^3.2.0",
+    "react-native-spring-scrollview": "^2.0.23",
+    "react-native-svg": "^12.1.0",
+    "react-native-tab-view": "^2.14.0",
+    "react-native-vector-icons": "^6.6.0",
+    "react-redux": "^7.2.0",
+    "realm": "^5.0.3",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "unistring": "akahuku/unistring#master"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/runtime": "^7.9.2",
+    "@react-native-community/eslint-config": "^1.0.0",
+    "babel-jest": "^25.3.0",
+    "eslint": "^6.8.0",
+    "jest": "^25.3.0",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react-test-renderer": "16.11.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
