@@ -22,14 +22,6 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import SuragePage from './SuragePage';
 
 function MyTabBar({state, descriptors, navigation}) {
-  if (
-    state.routes[0] &&
-    state.routes[0].state &&
-    state.routes[0].state &&
-    state.routes[0].state.routes.length > 0
-  ) {
-    return <View />;
-  }
   return (
     <View style={AppContainerstyles.bottomTapcontainer}>
       {state.routes.map((route, index) => {
@@ -128,14 +120,14 @@ function AppDrawer() {
         drawerType="slide"
         drawerContent={() => <View />}>
         <Drawer.Screen name="Main" component={AppTabs} />
-        {/* <Drawer.Screen
+        <Drawer.Screen
           name="SuraPage"
           key="SuraPage"
           component={SuragePage}
           options={{
             headerShown: false,
           }}
-        /> */}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );

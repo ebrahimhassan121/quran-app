@@ -24,13 +24,14 @@ class MyStack extends Component {
             header: (props) => <AppHeader drawer {...props} />,
           }}
         />
-        <Stack.Screen
+        {/* removed to be out bottom stack */}
+        {/* <Stack.Screen
           name="SuraPage"
           component={SuragePage}
           options={{
             headerShown: false,
           }}
-        />
+        /> */}
       </Stack.Navigator>
     );
   }

@@ -31,6 +31,28 @@ export const commonStyle = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
   },
+  loadFailContainer: {
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  loadFailIcon: {
+    color: 'gray',
+    fontSize: RF(20),
+  },
+  reloadDataButton: {
+    paddingHorizontal: 10,
+    paddingVertical: 15,
+    backgroundColor: backgroundColor1,
+    borderRadius: 5,
+    elevation: 100,
+  },
+  reloadDataText: {
+    color: mainColor,
+  },
 });
 
 export const AppContainerstyles = StyleSheet.create({
