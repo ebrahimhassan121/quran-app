@@ -15,21 +15,19 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import unistring from 'unistring';
 import {connect} from 'react-redux';
 import {changeActive} from '../../../Redux/quran/types';
+import {ChangeJuzData} from '../../../Redux/quran/action';
 class Juz extends Component {
   renderItemComp = ({item, index}) => {
     return (
-      <TouchableWithoutFeedback
+      <TouchableOpacity
         key={'Juza' + index}
         onPress={async () => {
-          GetJuzByJuzNumber(index + 1).then((JuzData) => {
-            this.props.changeActive(JuzData);
-          });
           this.props.navigation.navigate('SuraPage');
-        }}>
-        <View style={JuzListStyle.JuzaItemContainer}>
-          <Text style={JuzListStyle.JuzaItem}>{`Juza ${index + 1}`}</Text>
-        </View>
-      </TouchableWithoutFeedback>
+          this.props.changeActive({index: index + 1, type: 'juz'}); // fix slow navigation
+        }}
+        style={JuzListStyle.JuzaItemContainer}>
+        <Text style={JuzListStyle.JuzaItem}>{`Juza ${index + 1}`}</Text>
+      </TouchableOpacity>
     );
   };
   render() {
@@ -54,7 +52,7 @@ export default connect(
   },
   (dispatch) => {
     return {
-      changeActive: (ayat) => dispatch({type: changeActive, payload: ayat}),
+      changeActive: (active) => dispatch({type: changeActive, payload: active}),
     };
   },
 )(Juz);

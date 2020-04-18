@@ -4,13 +4,14 @@ import {
   fetch_quran_success,
   fetch_quran_fail,
   changeLastViewedAyah,
+  changeActive,
 } from './types';
-import dummy from './muyassar.json';
 import Realm, {
   InsertQuranData,
   GetSurahs,
   InsertLastViewedAyah,
   GetlastViewedAyah,
+  GetJuzByJuzNumber,
 } from '../../db';
 export const getData = () => {
   return async (dispatch) => {
@@ -34,6 +35,14 @@ export const getData = () => {
   };
 };
 
+export const ChangeJuzData = (juzNum) => {
+  return async (dispatch) => {
+    dispatch({type: changeActive, payload: []});
+    GetJuzByJuzNumber(juzNum).then((JuzData) => {
+      dispatch({type: changeActive, payload: JuzData});
+    });
+  };
+};
 export const ChangeActiveAyah = (ayah) => {
   return async (dispatch) => {
     if (!ayah || !ayah.number) return;

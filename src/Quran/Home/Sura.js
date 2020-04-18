@@ -12,23 +12,13 @@ import {connect} from 'react-redux';
 import {changeActive} from '../../../Redux/quran/types';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 class Sura extends Component {
-  state = {
-    data: [],
-  };
-  async componentDidMount() {
-    this.getAll();
-  }
-  getAll = async () => {
-    let data = await GetSurahs();
-    this.setState({data: data});
-  };
   renderItemComp = ({item, index}) => {
     return (
       <TouchableOpacity
         key={'surah' + index}
         onPress={async () => {
           this.props.navigation.navigate('SuraPage');
-          this.props.changeActive(item.ayahs);
+          this.props.changeActive({index: index, type: 'surah'}); // fix slow navigation
         }}>
         <View style={SuraPageStyle.itemContainer}>
           <Text style={SuraPageStyle.itemContainerNum}>{index + 1}</Text>
@@ -105,7 +95,7 @@ export default connect(
   },
   (dispatch) => {
     return {
-      changeActive: (ayat) => dispatch({type: changeActive, payload: ayat}),
+      changeActive: (active) => dispatch({type: changeActive, payload: active}),
     };
   },
 )(Sura);

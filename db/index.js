@@ -96,7 +96,7 @@ export const GetSurahByAyahNumber = (number) => {
       .filtered('ANY ayahs.number = ' + number)[0];
   });
 };
-export const GetJuzByJuzNumber = (juzNum) => {
+export const GetJuzByJuzNumber = async (juzNum) => {
   return Realm.open(DbOptions).then((re) => {
     return re.objects(AyahSchemaName).filtered('juz = ' + juzNum);
   });

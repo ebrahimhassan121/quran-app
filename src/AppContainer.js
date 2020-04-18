@@ -126,6 +126,7 @@ function AppDrawer() {
           component={SuragePage}
           options={{
             headerShown: false,
+            unmountOnBlur: true,
           }}
         />
       </Drawer.Navigator>

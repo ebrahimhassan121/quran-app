@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {Text, View, ScrollView, FlatList} from 'react-native';
+import {
+  Text,
+  View,
+  ScrollView,
+  FlatList,
+  ActivityIndicator,
+} from 'react-native';
 import {AppHeader} from '../Header';
 import {
   ScreenHeaderStyle,
@@ -12,7 +18,7 @@ import RenderItem from './RenderItem';
 import {ChangeActiveAyah} from '../../Redux/quran/action';
 import {changeLastViewedAyah} from '../../Redux/quran/types';
 import {GetSurahByAyahNumber} from '../../db/index';
-import {ActivityIndictor} from '../ActivityIndictor';
+import {responsiveFontSize} from 'react-native-responsive-dimensions';
 class AyatList extends Component {
   UpdateLastActiveAyah = async (activeAyah) => {
     GetSurahByAyahNumber(activeAyah.number).then((Sura) => {
@@ -36,11 +42,20 @@ class AyatList extends Component {
     if (!this.props.realm_ayahs_Data) return;
     this.UpdateLastActiveAyah(this.props.realm_ayahs_Data[0]);
   }
+  componentWillUnmount() {
+    if (this.props.lastViewed) {
+      this.props.ChangeActiveAyah(this.props.lastViewed.ayah);
+    }
+  }
   render() {
     const props = this.props;
-    const {realm_ayahs_Data} = props;
+    const realm_ayahs_Data = this.props.realm_ayahs_Data;
     if (!realm_ayahs_Data || realm_ayahs_Data.length < 1) {
-      return <ActivityIndictor />;
+      return (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <ActivityIndicator size={responsiveFontSize(10)} />
+        </View>
+      );
     }
     return (
       <View style={SingleSuraPageStyle.scrollContainer}>
@@ -49,13 +64,12 @@ class AyatList extends Component {
           renderItem={({item, index}) => (
             <RenderItem ayah={item} index={index} />
           )}
-          // onEndReachedThreshold={50}
           onViewableItemsChanged={this.onViewableItemsChanged}
-          // viewabilityConfig={{
-          //   itemVisiblePercentThreshold: 100,
-          // }}
+          viewabilityConfig={{
+            itemVisiblePercentThreshold: 95,
+            waitForInteraction: false,
+          }}
           keyExtractor={(item, index) => `ayah ${item.number}`}
-          // removeClippedSubviews={true}
         />
       </View>
     );
@@ -67,6 +81,7 @@ export default connect(
       data: state.quran.data,
       active: state.quran.active,
       lastViewed: state.quran.lastViewed,
+      activeAyats: state.quran.activeAyats,
     };
   },
   (dispatch) => {

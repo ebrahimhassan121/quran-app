@@ -4,12 +4,13 @@ import {
   fetch_quran_fail,
   changeActive,
   changeLastViewedAyah,
+  toggleLoading,
 } from './types';
 
 const initialState = {
   data: [],
   loading: false,
-  activeAyats: [],
+  activeAyats: null,
   lastViewed: null,
 };
 export default (state = initialState, action) => {
@@ -20,6 +21,8 @@ export default (state = initialState, action) => {
       return {data: action.payload, loading: false};
     case fetch_quran_fail:
       return {...state, loading: false};
+    case toggleLoading:
+      return {...state, loading: !state.loading};
     case changeActive:
       return {
         ...state,
